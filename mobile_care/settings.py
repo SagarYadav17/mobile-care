@@ -26,7 +26,7 @@ SECRET_KEY = 'f8pioz3usn^vo0)axs1hdj8oi7mk6xfbg!0ewc_2)-kdn3%cr('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', 'mobile-care.herokuapp.com']
+ALLOWED_HOSTS = ['mobile-care.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -144,9 +144,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static']
-
 STATIC_ROOT = (BASE_DIR / 'staticfiles')
+
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 
 SITE_ID = 1
