@@ -1,0 +1,1 @@
+web: gunicorn mobile_care.wsgi --log-file -
