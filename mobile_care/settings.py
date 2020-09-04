@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = 'f8pioz3usn^vo0)axs1hdj8oi7mk6xfbg!0ewc_2)-kdn3%cr('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mobile-care.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -62,6 +62,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'mobile_care.urls'
@@ -190,7 +192,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'mobilecare.smtp@gmail.com'
+EMAIL_HOST_PASSWORD = 'MobileCareSMTP'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'Mobile Care Team <noreply@example.com>'
