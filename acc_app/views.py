@@ -50,6 +50,10 @@ def login_user(request):
     return render(request, 'acc_app/login.html')
 
 
+def merchant_registeration(request):
+    return render(request, 'acc_app/merchant_form.html')
+
+
 def logout_user(request):
     logout(request)
     return redirect('login-user')

@@ -33,8 +33,8 @@
         <div class="top-header-area d-flex justify-content-between align-items-center">
             <!-- Contact Info -->
             <div class="contact-info">
-                <a href="tel:1234567890"><span>Phone:</span>  123 456 7890</a>
-                <a href="mailto:test@gmail.com"><span>Email:</span> careermaniaa@gmail.com</a>
+                <a href="tel:1234567890"><span>Phone:</span> 123 456 7890</a>
+                <a href="mailto:test@gmail.com"><span>Email:</span> test@gmail.com</a>
             </div>
             <!-- Follow Us -->
             <div class="follow-us">
@@ -52,7 +52,10 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="{% url 'home' %}"><img src="{% static 'index/img/photo2.png' %}" alt="" style="height: 80px;width: 70px;float: left"><h5 style="margin-top: 10px">MOBILE REPAIRS AT DOORSTEP</h5></a>
+                    <a class="nav-brand" href="{% url 'home' %}"><img src="{% static 'index/img/photo2.png' %}" alt=""
+                            style="height: 80px;width: 70px;float: left">
+                        <h5 style="margin-top: 10px">MOBILE REPAIRS AT DOORSTEP</h5>
+                    </a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler">
@@ -72,7 +75,7 @@
                             <ul>
                                 <li><a href="#service">Services</a></li>
                                 <li><a href="#work">How It Works</a></li>
-                                 <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Contact Us</a></li>
                             </ul>
 
                             <!-- Search Button -->
@@ -106,7 +109,7 @@
                     <!-- Hero Content -->
                     <div class="hero-content text-center">
                         <h2>Grow Your Business!</h2>
-                        <a href="#" class="btn clever-btn">Contact Us</a>
+                        <a href="{% url 'merchant-register' %}" class="btn clever-btn">Join Today</a>
                     </div>
                 </div>
             </div>
@@ -125,7 +128,9 @@
                             <img src="{% static 'index/img/smart.png' %}" alt="">
                         </div>
                         <h2 style="font-size: 25px;color: black"><span>Smartphones</span></h2>
-                         <h6> <p>We restore smartphones of all generations like the ones powered by Symbian.</p></h6>
+                        <h6>
+                            <p>We restore smartphones of all generations like the ones powered by Symbian.</p>
+                        </h6>
                     </div>
                 </div>
 
@@ -136,7 +141,9 @@
                             <img src="{% static 'index/img/tablet.png' %}" alt="">
                         </div>
                         <h2 style="font-size: 25px ;color: black"><span>Tablets</span></h2>
-                        <h6> <p>Renovate your tablet device. We can handle even a 100% damaged screen.</p></h6>
+                        <h6>
+                            <p>Renovate your tablet device. We can handle even a 100% damaged screen.</p>
+                        </h6>
                     </div>
                 </div>
 
@@ -147,7 +154,9 @@
                             <img src="{% static 'index/img/android.png' %}" alt="">
                         </div>
                         <h2 style="font-size: 25px;color: black"><span>Android</span></h2>
-                         <h6> <p>Our team knows everything on Android devices repairment.</p></h6>
+                        <h6>
+                            <p>Our team knows everything on Android devices repairment.</p>
+                        </h6>
                     </div>
                 </div>
 
@@ -157,8 +166,10 @@
                         <div class="icon">
                             <img src="{% static 'index/img/apple.png' %}" alt="">
                         </div>
-                        <h2 style="font-size: 25px;color: black"><span >Apple</span></h2>
-                        <h6> <p>Bring your damaged iPhone, iPad, iPod or any other Apple product!</p></h6>
+                        <h2 style="font-size: 25px;color: black"><span>Apple</span></h2>
+                        <h6>
+                            <p>Bring your damaged iPhone, iPad, iPod or any other Apple product!</p>
+                        </h6>
                     </div>
                 </div>
             </div>
@@ -167,7 +178,8 @@
     <!-- ##### Cool Facts Area End ##### -->
 
     <!-- ##### Popular Courses Start ##### -->
-    <section class="popular-courses-area section-padding-100-0" style="background-image: url({% static 'index/img/core-img/texture.png' %})" id="service">
+    <section class="popular-courses-area section-padding-100-0"
+        style="background-image: url({% static 'index/img/core-img/texture.png' %})" id="service">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -179,107 +191,117 @@
 
             <div class="row">
                 <!-- Single Popular Course -->
-              
+
                 <!-- Single Popular Course -->
                 <div class="col-12 col-md-6 col-lg-6">
-                      <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
-                      
-                   
-                        <img src="{% static 'index/img/Capture1.PNG' %}" alt="" style="height:130px;width: 150px;float: left">
+                    <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
+
+
+                        <img src="{% static 'index/img/Capture1.PNG' %}" alt=""
+                            style="height:130px;width: 150px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
                             <h5>Quick Service</h5>
-                           
-                            <p>We understand your time is precious.Our expert will fix your device within 30 minutes!</p>
-                       <!-- Seat Rating Fee -->
+
+                            <p>We understand your time is precious.Our expert will fix your device within 30 minutes!
+                            </p>
+                            <!-- Seat Rating Fee -->
                         </div>
-                 
-                        </div><br>
+
+                    </div><br>
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
-                      
-                   
-                        <img src="{% static 'index/img/Capture2.PNG' %}" alt="" style="height:120px;width: 140px;float: left">
+
+
+                        <img src="{% static 'index/img/Capture2.PNG' %}" alt=""
+                            style="height:120px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
                             <h5>Free Doorstep Service</h5>
-                           
+
                             <p>Get premium mobile screen repair service at your doorstep with no additional cost.</p>
-                       <!-- Seat Rating Fee -->
+                            <!-- Seat Rating Fee -->
                         </div>
-                 
-                        </div><br>
-                 
-                        
+
+                    </div><br>
+
+
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
-                      
-                   
-                        <img src="{% static 'index/img/Capture3.PNG' %}" alt="" style="height:120px;width: 140px;float: left">
+
+
+                        <img src="{% static 'index/img/Capture3.PNG' %}" alt=""
+                            style="height:120px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
                             <h5>Transparency</h5>
-                           
-                            <p>We provides complete, authoritative and timely declaration of information to its customers</p>
-                       <!-- Seat Rating Fee -->
+
+                            <p>We provides complete, authoritative and timely declaration of information to its
+                                customers</p>
+                            <!-- Seat Rating Fee -->
                         </div>
-                 
-                        </div><br>
-                     
+
+                    </div><br>
+
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
-                      
-                   
-                        <img src="{% static 'index/img/Capture4.PNG' %}" alt="" style="height:120px;width: 140px;float: left">
+
+
+                        <img src="{% static 'index/img/Capture4.PNG' %}" alt=""
+                            style="height:120px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
                             <h5>Certified Professionals</h5>
-                           
-                            <p>Our technicians are professionally experienced. Rest assured, your device is in safe hands</p>
-                       <!-- Seat Rating Fee -->
+
+                            <p>Our technicians are professionally experienced. Rest assured, your device is in safe
+                                hands</p>
+                            <!-- Seat Rating Fee -->
                         </div>
-                 
-                        </div><br>
-                     
+
+                    </div><br>
+
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
-                      
-                   
-                        <img src="{% static 'index/img/Capture5.PNG' %}" alt="" style="height:110px;width: 140px;float: left">
+
+
+                        <img src="{% static 'index/img/Capture5.PNG' %}" alt=""
+                            style="height:110px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
                             <h5>6-Month Warranty</h5>
-                           
-                            <p>We offer 6-month warranty. Our team will share all the warranty related information with you.</p>
-                       <!-- Seat Rating Fee -->
+
+                            <p>We offer 6-month warranty. Our team will share all the warranty related information with
+                                you.</p>
+                            <!-- Seat Rating Fee -->
                         </div>
-                 
-                        </div><br>
-                 
-                    
-                    </div>   
-                  <div class="col-12 col-md-6 col-lg-6">
+
+                    </div><br>
+
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-6">
                     <div class="single-popular-course text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
-                        <div class="icon" >
-                            <img src="{% static 'index/img/young.jpg' %}" alt="" style="height: 755px" >
-                        </div>   <!-- Course Content -->
-                        
+                        <div class="icon">
+                            <img src="{% static 'index/img/young.jpg' %}" alt="" style="height: 755px">
+                        </div> <!-- Course Content -->
+
                         <!-- Seat Rating Fee -->
-                       
+
                     </div>
                 </div>
 
-                </div>
+            </div>
 
-                <!-- Single Popular Course -->
-              
-           
+            <!-- Single Popular Course -->
+
+
         </div>
     </section>
     <!-- ##### Popular Courses End ##### -->
-    
-     
-   
+
+
+
     <!-- ##### Register Now Start ##### -->
-    <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center" style="background-image: url({% static 'index/img/core-img/texture.png' %});" id="work">
+    <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center"
+        style="background-image: url({% static 'index/img/core-img/texture.png' %});" id="work">
         <!-- Register Contact Form -->
-     <div class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading">
@@ -292,17 +314,17 @@
                 <!-- Single Popular Course -->
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-popular-course text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
-                        <div class="icon" >
+                        <div class="icon">
                             <img src="{% static 'index/img/desktop.svg' %}" alt="" style="height:150px;width: 150px;display: block;
         margin: 0 auto 10px;">
-                        </div>   <!-- Course Content -->
+                        </div> <!-- Course Content -->
                         <div class="course-content">
                             <h5>Develop your business</h5>
-                           
+
                             <p>Sign up for free, and offer your services to the Customers.</p>
                         </div>
                         <!-- Seat Rating Fee -->
-                       
+
                     </div>
                 </div>
 
@@ -314,11 +336,11 @@
                         <!-- Course Content -->
                         <div class="course-content">
                             <h5>Get requests from Customers</h5>
-                           
+
                             <p>Get notified and discuss service details with the Customers.</p>
                         </div>
                         <!-- Seat Rating Fee -->
-                        
+
                     </div>
                 </div>
 
@@ -330,28 +352,29 @@
                         <!-- Course Content -->
                         <div class="course-content">
                             <h5>Get paid for your work</h5>
-                           
+
                             <p>Deliver services to the customers and get paid for it.</p>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
-          <div class="row mb-5">
+            <div class="row mb-5">
                 <!-- Single Popular Course -->
                 <div class="col-12 col-md-6 col-lg-4">
-              </div>
-         <div class="col-12 col-md-6 col-lg-4">
-             
-                             <center><a href="{% url 'register-user' %}" class="btn btn-primary">REGISTER</a>
-                                </center>   
-             
-              </div></div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+
+                    <center><a href="{% url 'register-user' %}" class="btn btn-primary">REGISTER</a>
+                    </center>
+
+                </div>
+            </div>
         </div>
-   
+
         <!-- Register Now Countdown -->
-           </section>
-     <!-- ##### Best Tutors Start ##### -->
+    </section>
+    <!-- ##### Best Tutors Start ##### -->
     <section class="best-tutors-area section-padding-100">
         <div class="container">
             <div class="row">
@@ -375,8 +398,9 @@
                             <!-- Tutor Information -->
                             <div class="tutor-information text-center">
                                 <h5>Alex Parker</h5>
-                                
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
                                 <div class="social-info">
                                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -394,8 +418,9 @@
                             <!-- Tutor Information -->
                             <div class="tutor-information text-center">
                                 <h5>Alex Parker</h5>
-                                
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
                                 <div class="social-info">
                                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -413,8 +438,9 @@
                             <!-- Tutor Information -->
                             <div class="tutor-information text-center">
                                 <h5>Alex Parker</h5>
-                                
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
                                 <div class="social-info">
                                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -432,8 +458,9 @@
                             <!-- Tutor Information -->
                             <div class="tutor-information text-center">
                                 <h5>Alex Parker</h5>
-                               
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
                                 <div class="social-info">
                                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -451,8 +478,9 @@
                             <!-- Tutor Information -->
                             <div class="tutor-information text-center">
                                 <h5>Alex Parker</h5>
-                               
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet elit, sit amet tincidunt mauris ultrices vitae.</p>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
                                 <div class="social-info">
                                     <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                                     <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -466,7 +494,7 @@
         </div>
     </section>
     <!-- ##### Best Tutors End ##### -->
-<br><br>
+    <br><br>
     <!-- ##### Register Now End ##### -->
 
     <!-- ##### Footer Area Start ##### -->
@@ -478,12 +506,19 @@
                     <div class="col-12">
                         <!-- Footer Logo -->
                         <div class="footer-logo">
-                            <a href="{% url 'home' %}"><h2>MOBILE REPAIRS AT DOORSTEP</h2></a>
+                            <a href="{% url 'home' %}">
+                                <h2>MOBILE REPAIRS AT DOORSTEP</h2>
+                            </a>
                         </div>
                         <!-- Copywrite -->
-                        <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved |   <i class="fa fa-heart-o" aria-hidden="true"></i><a href="https://colorlib.com" target="_blank"></a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        <p><a href="#">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | <i
+                                    class="fa fa-heart-o" aria-hidden="true"></i><a href="https://colorlib.com"
+                                    target="_blank"></a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
                     </div>
                 </div>
             </div>
