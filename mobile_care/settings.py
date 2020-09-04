@@ -144,9 +144,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = (BASE_DIR / 'staticfiles')
-
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+
+STATIC_ROOT = (BASE_DIR / 'staticfiles')
 
 
 SITE_ID = 1

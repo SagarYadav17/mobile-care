@@ -21,6 +21,16 @@ def register_user(request):
         user = UserAccount.objects.create_activeuser(e_mail, password)
 
         user.save()
+        template = render_to_string('welcome_mail.html', {'email': e_mail})
+        email = EmailMessage(
+            'Welcome to Mobile Care',
+            template,
+            settings.EMAIL_HOST_USER,
+            [e_mail],
+        )
+        email.fail_silently = False
+        email.send()
+        print(e_mail)
         return redirect('login-user')
 
     return render(request, "acc_app/register.html")
@@ -33,18 +43,6 @@ def login_user(request):
         user = authenticate(email=e_mail, password=pswd)
         if user:
             login(request, user)
-
-            template = render_to_string(
-                'login_alert_email.html', {'email': e_mail})
-            email = EmailMessage(
-                'Login Alert',
-                template,
-                settings.EMAIL_HOST_USER,
-                [e_mail],
-            )
-            email.fail_silently = False
-            email.send()
-            print(e_mail)
 
             if user.is_active:
                 return redirect('home')
