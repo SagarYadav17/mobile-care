@@ -150,15 +150,14 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = (BASE_DIR / 'staticfiles')
 
 
-SITE_ID = 1
+SITE_ID = 2
 
 LOGIN_URL = 'login-user'
 LOGOUT_URL = 'logout-user'
 LOGIN_REDIRECT_URL = 'home'
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
@@ -188,11 +187,9 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 
-# smtp server
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'mobilecare.smtp@gmail.com'
 EMAIL_HOST_PASSWORD = 'MobileCareSMTP'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Mobile Care Team <noreply@example.com>'
+DEFAULT_FROM_EMAIL = 'Mobile Care Team'
