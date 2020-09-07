@@ -4,6 +4,7 @@ from acc_app.models import UserAccount
 # Register your models here.
 
 class UserAccountAdmin(admin.ModelAdmin):
+    list_display = ['username', 'email']
     search_fields = ['email']
     list_filter = ['is_active', 'is_admin', 'is_staff']
 

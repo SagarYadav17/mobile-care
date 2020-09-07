@@ -18,7 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('acc_app.urls')),
+    path('', include('acc_app.urls')),              # For acc_app
     path('accounts/', include('allauth.urls')),     # For django-allauth
     path('', include('django.contrib.auth.urls')),  # For password reset
 

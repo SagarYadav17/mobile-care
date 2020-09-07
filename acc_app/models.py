@@ -7,35 +7,43 @@ from django.contrib.auth.base_user import BaseUserManager
 
 
 class AccountManager(BaseUserManager):
-    def create_user(self, email, password=None):
+    def create_user(self, username, email, password=None):
         if not email:
             raise ValueError('Users must have an email address')
-
+        if not username:
+            raise ValueError('users must have an username')
+        if not password:
+            raise ValueError('User must have an password')
 
         user = self.model(
-            email=self.normalize_email(email)
+            email=self.normalize_email(email),
+            username=username
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, username, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
             password=password,
+            username=username,
         )
+
         user.is_admin = True
         user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
 
-    def create_staffuser(self, email, password):
+    def create_staffuser(self, username, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
+            username=username,
             password=password,
         )
+
         user.is_staff = False
         user.is_superuser = False
         user.is_both = False
@@ -44,11 +52,13 @@ class AccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_activeuser(self, email, password):
+    def create_activeuser(self, username, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
+            username=username,
             password=password,
         )
+
         user.is_active = True
         user.is_staff = False
         user.is_superuser = False
@@ -57,6 +67,7 @@ class AccountManager(BaseUserManager):
 
 
 class UserAccount(AbstractBaseUser):
+    username = models.CharField(max_length=30, unique=True)
     email = models.EmailField(unique=True)
 
     is_active = models.BooleanField(default=True)
@@ -66,9 +77,8 @@ class UserAccount(AbstractBaseUser):
     is_both = models.BooleanField(default=False)
     is_first_login = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
     objects = AccountManager()
 
     def __str__(self):
