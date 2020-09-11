@@ -1,0 +1,64 @@
+{% if request.user.is_superuser %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <title>carry.com</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class=" row">
+            <div class="col-md-12">
+                <a href="{%url 'logout-user' %}">logout</a>
+
+                <h1> admin dashboard</h1>
+
+                <h1 class="mt-5"> accept request of selllers</h1>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Sr.num</th>
+                            <th>Email</th>
+                            <th>action</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in sel %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{i}}</td>
+                            <td>
+                                <form action="" method="post">{%csrf_token%}
+                                    <input type="hidden" value="{{i.id}}" name="id">
+                                    <input type="submit" name="approve" value="Aprove seller request">
+                                </form>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+
+                </table>
+
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
+{% else %}
+<h1>You are not an admin. Go back to home <a href="{% url 'home' %}">Go Home Kid</a></h1>
+{% endif %}

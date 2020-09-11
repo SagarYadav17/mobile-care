@@ -24,6 +24,7 @@ class AccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    #   admin
     def create_superuser(self, username, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
@@ -37,6 +38,7 @@ class AccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    #   seller / merchant
     def create_staffuser(self, username, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
@@ -52,6 +54,7 @@ class AccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    #   customer
     def create_activeuser(self, username, email, password):
         user = self.create_user(
             email=self.normalize_email(email),
@@ -89,3 +92,46 @@ class UserAccount(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+class MerchantAccount(models.Model):
+    profile_img = models.ImageField(upload_to='Images/ProfileIMG', blank=True)
+    full_name = models.CharField(max_length=50)
+    shop_name = models.CharField(max_length=50, blank=True)
+    email = models.OneToOneField(UserAccount, on_delete=models.PROTECT)
+    phone_num = models.PositiveIntegerField(unique=True)
+    phone_num2 = models.PositiveIntegerField()
+    aadhar = models.CharField(unique=True, max_length=16, blank=True)
+    address = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=20, blank=True)
+    state = models.CharField(max_length=20, blank=True)
+    pincode = models.PositiveSmallIntegerField(default=00)
+    shop_established_date = models.DateField(blank=True, null=True)
+    shop_img = models.ImageField(upload_to='Images/ShopsIMG', blank=True)
+    shop_type = models.CharField(max_length=15, default='Retailer')
+    gst_num = models.CharField(max_length=15, blank=True)
+    available_services = models.CharField(max_length=200, blank=True)
+    average_price = models.PositiveIntegerField(default=00)
+
+    EMAIL_FIELD = 'email'
+    objects = AccountManager()
+
+    def __str__(self):
+        return self.full_name
+
+    def has_perm(self, perm, obj=None):
+        return self.is_admin
+
+    def has_module_perms(self, app_label):
+        return True
+
+
+class add_product(models.Model):
+    name = models.CharField(max_length=250)
+    price = models.CharField(max_length=230)
+    image = models.ImageField(upload_to="Images/Products/%Y/%m/%d")
+    user = models.ForeignKey(MerchantAccount, on_delete=models.CASCADE)
+    is_status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.name

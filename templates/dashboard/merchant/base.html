@@ -1,0 +1,153 @@
+{% if request.user.is_active and not request.user.is_staff %}
+<h1>You are not a seller <a href="{% url 'home' %}">Go HOME</a></h1>
+{% else %}
+{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Merchant Dashboard</title>
+
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'merchant-dashboard/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'merchant-dashboard/css/font-awesome.css' %}" rel="stylesheet" />
+    <!--CUSTOM BASIC STYLES-->
+    <link href="{% static 'merchant-dashboard/css/basic.css' %}" rel="stylesheet" />
+    <!--CUSTOM MAIN STYLES-->
+    <link href="{% static 'merchant-dashboard/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'merchant-dashboard' %}">Mobile Care</a>
+            </div>
+
+            <div class="header-right">
+
+                <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i
+                        class="fa fa-envelope-o fa-2x"></i></a>
+                <a href="component.html" class="btn btn-primary" title="New Notification"><b>40 </b><i
+                        class="fa fa-bars fa-2x"></i></a>
+                <a href="login.html" class="btn btn-danger" title="Logout"><i
+                        class="fa fa-exclamation-circle fa-2x"></i></a>
+
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="{% static 'merchant-dashboard/img/user.png' %}" class="img-thumbnail" />
+
+                            <div class="inner-text">
+                                {{username}}
+                                <br />
+                                <small>Last Login : 2 Weeks Ago </small>
+                            </div>
+                        </div>
+
+                    </li>
+
+
+                    <li>
+                        <a href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-bicycle "></i>Profile <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="{% url 'change-merchant-details' %}"><i class="fa fa-code "></i>Add details</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-yelp "></i>Billing & other details <span
+                                class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="invoice.html"><i class="fa fa-coffee"></i>Invoice</a>
+                            </li>
+                            <li>
+                                <a href="component.html"><i class="fa fa-key "></i>Notifications</a>
+                            </li>
+
+                            <li>
+                                <a href="message-task.html"><i class="fa fa-recycle "></i>Messages & Tasks</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#"><i class="fa fa-flash "></i>Product <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li>
+                                <a href="product.html"><i class="fa fa-code "></i>Add Product details</a>
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="gallery.html"><i class="fa fa-anchor "></i>Gallery</a>
+                    </li>
+                    <li>
+                        <a href="error.html"><i class="fa fa-bug "></i>Error Page</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'logout-user' %}"><i class="fa fa-square-o "></i>Logout</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+
+
+        {%block base%}
+        {%endblock%}
+    </div>
+    <!-- /. WRAPPER  -->
+
+    <!-- /. FOOTER  -->
+
+    <div id="footer-sec">
+        &copy;YourCompany | Design By : <a href="http://www.binarytheme.com/" target="_blank">Careermaniaa</a>
+    </div>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'merchant-dashboard/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'merchant-dashboard/js/bootstrap.js' %}"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="{% static 'merchant-dashboard/js/jquery.metisMenu.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'merchant-dashboard/js/custom.js' %}"></script>
+
+
+
+</body>
+
+</html>
+{% endif %}
