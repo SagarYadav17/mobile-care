@@ -8,7 +8,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from acc_app.models import UserAccount
+from acc_app.models import UserAccount, MerchantAccount
 
 from django.contrib import messages
 
@@ -102,4 +102,110 @@ def soon(request):
 
 
 def merchant_form(request):
+    if request.method == 'POST':
+        fullname = request.POST['fullname']
+        shopname = request.POST['shopname']
+        email = request.POST['email']
+        phone_number = request.POST['mb']
+        phone_number1 = request.POST['mb1']
+        aadhar = request.POST['adhar']
+        address = request.POST['address']
+        city = request.POST['city']
+        state = request.POST['state']
+        pincode = request.POST['zip']
+        date = request.POST['dd']
+        shopIMG = request.POST['image']
+        shop_type = request.POST['shop-type']
+        gst = request.POST['gst']
+        services = request.POST['services']
+        price = request.POST['price']
+
+        new_merchant = MerchantAccount.objects.create(
+            email=UserAccount.objects.get(email=email),
+            full_name=fullname,
+            shop_name=shopname,
+            phone_num=phone_number,
+            phone_num2=phone_number1,
+            aadhar=aadhar,
+            address=address,
+            city=city.lower(),
+            state=state.lower(),
+            pincode=pincode,
+            shop_established_date=date,
+            shop_img=shopIMG,
+            shop_type=shop_type,
+            gst_num=gst,
+            available_services=services,
+            average_price=price
+        )
+
+        update_status = UserAccount.objects.get(email=email)
+        update_status.is_active = False
+        update_status.save()
+
+        template = render_to_string(
+            'mail/merchant_conformed.html', {'email': email})
+
+        email = EmailMessage(
+            'Welcome to Mobile Care',
+            template,
+            settings.EMAIL_HOST_USER,
+            [email],
+        )
+        email.fail_silently = False
+        email.send()
+        
+        return redirect('home')
+
     return render(request, 'acc_app/merchant_register_form.html')
+
+
+@login_required(login_url='login-user')
+def admin_dashboard(request):
+    context = {}
+    sel_user = UserAccount.objects.filter(
+        is_active=False, is_staff=False, is_superuser=False)
+
+    context['sel'] = sel_user
+
+    if request.method == "POST":
+        if "approve" in request.POST:
+            sel_id = request.POST['id']
+            sel = UserAccount.objects.get(id=sel_id)
+            template = render_to_string(
+                'mail/merchant_conformed.html', {'email': sel.email})
+
+            email = EmailMessage(
+                'Welcome to Mobile Care',
+                template,
+                settings.EMAIL_HOST_USER,
+                [sel.email],
+            )
+            email.fail_silently = False
+            email.send()
+
+            sel.is_active = True
+            sel.is_staff = True
+            sel.save()
+
+    return render(request, "dashboard/admin/admin.html", context)
+
+
+@login_required(login_url='login-user')
+def merchant_dashboard(request):
+    merchant = MerchantAccount.objects.get(email=request.user)
+    context = {'username': merchant.full_name}
+
+    return render(request, 'dashboard/merchant/dashboard.html', context)
+
+
+@login_required(login_url='login-user')
+def change_merchant_details(request):
+    merchant = MerchantAccount.objects.get(email=request.user)
+    if request.method == 'POST':
+        new_username = request.POST['username']
+        update_status = UserAccount.objects.get(email=request.user)
+        update_status.username = new_username
+        update_status.save()
+
+    return render(request, 'dashboard/merchant/form-advance.html')
