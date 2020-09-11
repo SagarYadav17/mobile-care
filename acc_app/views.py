@@ -144,7 +144,7 @@ def merchant_form(request):
         update_status.save()
 
         template = render_to_string(
-            'mail/merchant_conformed.html', {'email': email})
+            'mail/merchant_in_review.html', {'email': email})
 
         email = EmailMessage(
             'Welcome to Mobile Care',
