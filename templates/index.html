@@ -16,58 +16,10 @@
     <link rel="icon" href="{% static 'index/img/core-img/favicon.ico' %}">
 
     <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'index/scss/popup_form.css' %}">
     <link rel="stylesheet" href="{% static 'index/style.css' %}">
 
 </head>
-<style>
-    /* The Modal (background) */
-    .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 1;
-        /* Sit on top */
-        padding-top: 100px;
-        /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        overflow: auto;
-        /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0);
-        /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4);
-        /* Black w/ opacity */
-    }
-
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-    }
-
-    /* The Close Button */
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-</style>
 
 <body>
     <!-- Preloader -->
@@ -137,8 +89,8 @@
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
-                                <a href="{% url 'register-user' %}" class="btn active">Register</a>
-                                <a href="{% url 'login-user' %}" class="btn active">Login</a>
+                                <a href="{% url 'login-user' %}" class="btn active">Log in</a>
+                                <a href="{% url 'register-user' %}" class="btn active">Sign up</a>
                             </div>
 
                         </div>
@@ -158,19 +110,23 @@
                     <!-- Hero Content -->
                     <div class="hero-content text-center">
                         <h2>Grow Your Business!</h2>
-                        <button id="myBtn" class="btn clever-btn">Join Today</button>
-                        <div id="myModal" class="modal">
+                        <button class="open-button" onclick="openForm()">Join Today</button>
 
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <span class="close">&times;</span>
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <input class="input100" type="email" name="email" placeholder="Email addess...">
-                                    <button class="btn clever-btn" type="submit">Sign Up</button>
-                                </form>
-                            </div>
 
+                        <!-- Modal content -->
+                        <div class="form-popup" id="myForm">
+                            <form method="POST" class="form-container">
+                                {% csrf_token %}
+                                <h1>Register</h1>
+
+                                <label for="email"><b>Email</b></label>
+                                <input type="text" placeholder="Enter Email" name="email" required>
+
+                                <button type="submit" class="btn">Register</button>
+                                <p></p>
+                                <p>Don't have an account?<a href="{% url 'register-user' %}">Sign Up</a></p>
+                                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -615,34 +571,17 @@
     <script src="{% static 'index/js/plugins/plugins.js' %}"></script>
     <!-- Active js -->
     <script src="{% static 'index/js/active.js' %}"></script>
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
 </body>
 
-<script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal 
-    btn.onclick = function () {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 
 </html>

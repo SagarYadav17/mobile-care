@@ -95,7 +95,7 @@ class UserAccount(AbstractBaseUser):
 
 
 class MerchantAccount(models.Model):
-    profile_img = models.ImageField(upload_to='Images/ProfileIMG', blank=True)
+    profile_img = models.ImageField(upload_to='ProfileIMG', blank=True)
     full_name = models.CharField(max_length=50)
     shop_name = models.CharField(max_length=50, blank=True)
     email = models.OneToOneField(UserAccount, on_delete=models.PROTECT)
@@ -107,7 +107,7 @@ class MerchantAccount(models.Model):
     state = models.CharField(max_length=20, blank=True)
     pincode = models.PositiveSmallIntegerField(default=00)
     shop_established_date = models.DateField(blank=True, null=True)
-    shop_img = models.ImageField(upload_to='Images/ShopsIMG', blank=True)
+    shop_img = models.ImageField(upload_to='ShopsIMG', blank=True)
     shop_type = models.CharField(max_length=15, default='Retailer')
     gst_num = models.CharField(max_length=15, blank=True)
     available_services = models.CharField(max_length=200, blank=True)
@@ -129,7 +129,7 @@ class MerchantAccount(models.Model):
 class add_product(models.Model):
     name = models.CharField(max_length=250)
     price = models.CharField(max_length=230)
-    image = models.ImageField(upload_to="Images/Products/%Y/%m/%d")
+    image = models.ImageField(upload_to="Products/%Y/%m/%d")
     user = models.ForeignKey(MerchantAccount, on_delete=models.CASCADE)
     is_status = models.BooleanField(default=False)
 

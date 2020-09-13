@@ -37,7 +37,7 @@ def register_user(request):
             )
             email.fail_silently = False
             email.send()
-            return redirect('login-user')
+            return redirect('home')
 
         except IntegrityError as e:
             if str(e) == 'UNIQUE constraint failed: acc_app_useraccount.username':
@@ -58,12 +58,15 @@ def login_user(request):
 
         email_login = authenticate(email=e_mail, password=pswd)
         username_login = authenticate(username=e_mail, password=pswd)
+
         if email_login:
             login(request, email_login)
-            return redirect('home')
+            return redirect('merchant-dashboard')
+
         elif username_login:
             login(request, username_login)
-            return redirect('home')
+            return redirect('merchant-dashboard')
+
         else:
             messages.info(request, 'Your entered wrong credentials')
 
@@ -154,7 +157,7 @@ def merchant_form(request):
         )
         email.fail_silently = False
         email.send()
-        
+
         return redirect('home')
 
     return render(request, 'acc_app/merchant_register_form.html')
@@ -194,18 +197,88 @@ def admin_dashboard(request):
 @login_required(login_url='login-user')
 def merchant_dashboard(request):
     merchant = MerchantAccount.objects.get(email=request.user)
-    context = {'username': merchant.full_name}
+    context = {
+        'username': merchant.full_name,
+        'shop-name': merchant.shop_name
+    }
 
     return render(request, 'dashboard/merchant/dashboard.html', context)
 
 
 @login_required(login_url='login-user')
 def change_merchant_details(request):
+
     merchant = MerchantAccount.objects.get(email=request.user)
+    merchant = MerchantAccount.objects.get(email=request.user)
+    context = {
+        'username': merchant.full_name,
+        'shop-name': merchant.shop_name
+    }
     if request.method == 'POST':
         new_username = request.POST['username']
+        profile_image = request.POST.get('image')
+
         update_status = UserAccount.objects.get(email=request.user)
         update_status.username = new_username
         update_status.save()
 
-    return render(request, 'dashboard/merchant/form-advance.html')
+        update_image = MerchantAccount.objects.get(email=request.user)
+        update_image.profile_img = profile_image
+        update_image.save()
+
+    return render(request, 'dashboard/merchant/form-advance.html', context)
+
+
+@login_required(login_url='login-user')
+def merchant_components(request):
+    merchant = MerchantAccount.objects.get(email=request.user)
+    context = {
+        'username': merchant.full_name,
+        'shop-name': merchant.shop_name
+    }
+
+    return render(request, 'dashboard/merchant/component.html', context)
+
+
+@login_required(login_url='login-user')
+def merchant_gallery(request):
+    merchant = MerchantAccount.objects.get(email=request.user)
+    context = {
+        'username': merchant.full_name,
+        'shop-name': merchant.shop_name
+    }
+
+    return render(request, 'dashboard/merchant/gallery.html', context)
+
+
+@login_required(login_url='login-user')
+def merchant_invoice(request):
+    merchant = MerchantAccount.objects.get(email=request.user)
+    context = {
+        'username': merchant.full_name,
+        'shop-name': merchant.shop_name
+    }
+
+    return render(request, 'dashboard/merchant/invoice.html', context)
+
+
+@login_required(login_url='login-user')
+def merchant_messages(request):
+    merchant = MerchantAccount.objects.get(email=request.user)
+    context = {
+        'username': merchant.full_name,
+        'shop-name': merchant.shop_name
+    }
+
+    return render(request, 'dashboard/merchant/message-task.html')
+
+
+@login_required(login_url='login-user')
+def merchant_product(request):
+    merchant = MerchantAccount.objects.get(email=request.user)
+    context = {
+        'username': merchant.full_name,
+        'shop-name': merchant.shop_name
+    }
+
+    return render(request, 'dashboard/merchant/product.html', context)

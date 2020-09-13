@@ -37,11 +37,11 @@
 
             <div class="header-right">
 
-                <a href="message-task.html" class="btn btn-info" title="New Message"><b>30 </b><i
+                <a href="{% url 'merchant-message' %}" class="btn btn-info" title="New Message"><b>30 </b><i
                         class="fa fa-envelope-o fa-2x"></i></a>
-                <a href="component.html" class="btn btn-primary" title="New Notification"><b>40 </b><i
+                <a href="{% url 'merchant-component' %}" class="btn btn-primary" title="New Notification"><b>40 </b><i
                         class="fa fa-bars fa-2x"></i></a>
-                <a href="login.html" class="btn btn-danger" title="Logout"><i
+                <a href="{% url 'logout-user' %}" class="btn btn-danger" title="Logout"><i
                         class="fa fa-exclamation-circle fa-2x"></i></a>
 
             </div>
@@ -57,7 +57,7 @@
                             <div class="inner-text">
                                 {{username}}
                                 <br />
-                                <small>Last Login : 2 Weeks Ago </small>
+                                <small>{{shop-name}}</small>
                             </div>
                         </div>
 
@@ -65,7 +65,7 @@
 
 
                     <li>
-                        <a href="index.html"><i class="fa fa-dashboard "></i>Dashboard</a>
+                        <a href="{% url 'merchant-dashboard' %}"><i class="fa fa-dashboard "></i>Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-bicycle "></i>Profile <span class="fa arrow"></span></a>
@@ -83,14 +83,14 @@
                                 class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="invoice.html"><i class="fa fa-coffee"></i>Invoice</a>
+                                <a href="{% url 'merchant-invoice' %}"><i class="fa fa-coffee"></i>Invoice</a>
                             </li>
                             <li>
-                                <a href="component.html"><i class="fa fa-key "></i>Notifications</a>
+                                <a href="{% url 'merchant-component' %}"><i class="fa fa-key "></i>Notifications</a>
                             </li>
 
                             <li>
-                                <a href="message-task.html"><i class="fa fa-recycle "></i>Messages & Tasks</a>
+                                <a href="{% url 'merchant-message' %}"><i class="fa fa-recycle "></i>Messages & Tasks</a>
                             </li>
 
 
@@ -102,7 +102,7 @@
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a href="product.html"><i class="fa fa-code "></i>Add Product details</a>
+                                <a href="{% url 'merchant-product' %}"><i class="fa fa-code "></i>Add Product details</a>
                             </li>
 
 
@@ -110,10 +110,7 @@
                     </li>
 
                     <li>
-                        <a href="gallery.html"><i class="fa fa-anchor "></i>Gallery</a>
-                    </li>
-                    <li>
-                        <a href="error.html"><i class="fa fa-bug "></i>Error Page</a>
+                        <a href="{% url 'merchant-gallery' %}"><i class="fa fa-anchor "></i>Gallery</a>
                     </li>
                     <li>
                         <a href="{% url 'logout-user' %}"><i class="fa fa-square-o "></i>Logout</a>
