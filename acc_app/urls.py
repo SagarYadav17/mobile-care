@@ -5,8 +5,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('register/', views.register_user, name='register-user'),
     path('login/', views.login_user, name='login-user'),
-    path('logout-user', views.logout_user, name='logout-user'),
-    path('merchant-register-form', views.merchant_form, name='merchant-register-form'),
+    path('logout-user/', views.logout_user, name='logout-user'),
+    path('merchant-register-form/', views.merchant_form, name='merchant-register-form'),
     path('confirm-merchant', views.merchant_form, name='confirm-merchant'),
 
     # admin dashboard
