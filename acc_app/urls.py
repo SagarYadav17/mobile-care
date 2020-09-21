@@ -7,7 +7,7 @@ urlpatterns = [
     path('login/', views.login_user, name='login-user'),
     path('logout-user/', views.logout_user, name='logout-user'),
     path('merchant-register-form/', views.merchant_form, name='merchant-register-form'),
-    path('confirm-merchant', views.merchant_form, name='confirm-merchant'),
+    path('confirm-merchant/', views.merchant_form, name='confirm-merchant'),
 
     # admin dashboard
     path('admin-dashboard/', views.admin_dashboard, name='admin-dashboard'),
