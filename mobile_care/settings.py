@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     # apps
-    'acc_app.apps.AccAppConfig',
+    'acc_app',
 
     # allauth
     'allauth',
