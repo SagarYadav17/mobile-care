@@ -17,7 +17,8 @@ urlpatterns = [
          views.admin_chat, name='admin-chat'),
     path('admin-merchant-approval/', views.admin_merchant_approval,
          name='admin-merchant-approve'),
-         path('admin-text-all-merchant/', views.admin_text_all, name='admin-text-all-merchant'),
+    path('admin-text-all-merchant/', views.admin_text_all,
+         name='admin-text-all-merchant'),
 
 
     # merchant dashboard
