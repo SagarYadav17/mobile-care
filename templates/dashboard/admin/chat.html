@@ -1,0 +1,255 @@
+﻿{% if request.user.is_superuser %}
+{% load static %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="{% static 'admin/css/font-awesome.css' %}" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="{% static 'admin/css/custom.css' %}" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+    <style>
+        .casing {
+            width: 700px;
+            height: 650px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .window {
+            border: 1px solid #000;
+            border-radius: 10px;
+            background: #fff;
+            width: 100%;
+            height: calc(100% - 50px);
+            margin: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #ededed;
+            padding: 10px;
+            margin: -10px -10px 8px -10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+
+        .chat {
+            background: #72b8ff;
+            border-radius: 20px;
+            display: inline-block;
+            padding: 10px;
+            color: #fff;
+            font-weight: lighter;
+            font-size: small;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
+            margin: 5px;
+            position: relative;
+        }
+
+        .chat.u1 {
+            float: left;
+            clear: both;
+            border-top-left-radius: 0px;
+        }
+
+        .chat.u1:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            display: block;
+            border-left: 5px solid transparent;
+            border-right: 5px solid #72b8ff;
+            border-top: 5px solid #72b8ff;
+            border-bottom: 5px solid transparent;
+            position: absolute;
+            top: 0px;
+            left: -10px;
+        }
+
+        .chat.u2 {
+            float: right;
+            clear: both;
+            border-top-right-radius: 0px;
+            background: #00D025;
+        }
+
+        .chat.u2:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            display: block;
+            border-left: 5px solid #00D025;
+            border-right: 5px solid transparent;
+            border-top: 5px solid #00D025;
+            border-bottom: 5px solid transparent;
+            position: absolute;
+            top: 0px;
+            right: -10px;
+        }
+
+        .new-chat {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            background: #ededed;
+            height: 40px;
+            left: 0px;
+            border-top: 1px solid #ddd;
+        }
+
+        .new-chat input {
+            outline: none;
+            padding: 10px;
+            box-sizing: border-box;
+            font-size: 18px;
+            width: 600px;
+            height: 40px;
+            border: none;
+            display: inline-block;
+            color: #999;
+            font-weight: 100;
+            background: #ddd;
+        }
+
+        .new-chat button {
+            width: 40px;
+            height: 30px;
+            padding: 0;
+            display: inline-block;
+            border: none;
+            color: #00D025;
+            background: none;
+            position: relative;
+            top: -3px;
+            outline: none;
+            cursor: pointer;
+
+        }
+
+        .new-chat button:active {
+            color: #555;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="adjust-nav">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'admin-dashboard' %}">
+                        <img style="height:50px;width:60px;" src="{% static 'admin/img/logo.png' %}" />
+                    </a>
+                </div>
+
+                <span class="logout-spn">
+                    <a href="#" style="color:#fff;">LOGOUT</a>
+
+                </span>
+            </div>
+        </div>
+
+        <!-- /. NAV SIDE  -->
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-md-12">
+                    <center>
+                        <h2>CHAT</h2>
+                    </center>
+                </div>
+            </div>
+            <!-- /. ROW  -->
+            <hr />
+
+            <div class="casing">
+                <div class="window">
+                    <div class="header">{{email}}</div>
+                    <div class="chats" id="chats">
+                        {% for message in messages %}
+                        {% if message.sender == request.user %}
+                        <span class="u2 chat">{{ message }}</span>
+                        {% else %}
+                        <span class="u1 chat">{{ message}}</span>
+
+
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="new-chat">
+                            <input type="text" id="message" name="message">
+                            <button id="send">Send</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="home-btn">
+                    <div class="hb-square"></div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+        setInterval(function () {
+            location.reload();
+        }, 15000);
+    </script>
+
+
+
+
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="{% static 'admin/js/jquery-1.10.2.js' %}"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="{% static 'admin/js/custom.js' %}"></script>
+
+
+</body>
+
+
+</html>
+{% else %}
+
+<p>Not a admin! <a href="{% url 'login-user' %}">Login</a></p>
+
+{% endif %}

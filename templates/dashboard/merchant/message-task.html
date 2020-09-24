@@ -18,45 +18,39 @@
 
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        Message Box #1
+                        Chat with Administrator
                     </div>
                     <div class="panel-body" style="padding: 0px;">
                         <div class="chat-widget-main">
+                            {% for message in messages %}
+                            {% if message.sender == request.user %}
 
 
-                            <div class="chat-widget-left">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                            <div class="chat-widget-name-left">
-                                <h4>Amanna Seiar</h4>
-                            </div>
+                            <br>
                             <div class="chat-widget-right">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                {{ message }}
                             </div>
-                            <div class="chat-widget-name-right">
-                                <h4>Donim Cruseia </h4>
-                            </div>
+                            {% else %}
+                            <br>
                             <div class="chat-widget-left">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                {{ message }}
                             </div>
-                            <div class="chat-widget-name-left">
-                                <h4>Amanna Seiar</h4>
-                            </div>
-                            <div class="chat-widget-right">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            </div>
-                            <div class="chat-widget-name-right">
-                                <h4>Donim Cruseia </h4>
-                            </div>
+
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Enter Message" />
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="button">SEND</button>
-                            </span>
-                        </div>
+                        <form method="POST" id="chat-box">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input name="message" typetype="text" class="form-control"
+                                    placeholder="Enter Message" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit">SEND</button>
+                                </span>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -200,5 +194,11 @@
     </div>
     <!-- /. PAGE INNER  -->
 </div>
+
+<script>
+    setInterval(function () {
+        location.reload();
+    }, 15000);
+</script>
 <!-- /. PAGE WRAPPER  -->
 {%endblock%}

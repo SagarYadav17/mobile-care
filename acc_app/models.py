@@ -31,8 +31,6 @@ class AccountManager(BaseUserManager):
             password=password,
             username=username,
         )
-
-        user.is_admin = True
         user.is_staff = True
         user.is_superuser = True
         user.save(using=self._db)
@@ -48,9 +46,7 @@ class AccountManager(BaseUserManager):
 
         user.is_staff = False
         user.is_superuser = False
-        user.is_both = False
         user.is_active = False
-        user.is_first_login = False
         user.save(using=self._db)
         return user
 
@@ -74,11 +70,8 @@ class UserAccount(AbstractBaseUser):
     email = models.EmailField(unique=True)
 
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    is_both = models.BooleanField(default=False)
-    is_first_login = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
@@ -88,7 +81,7 @@ class UserAccount(AbstractBaseUser):
         return self.email
 
     def has_perm(self, perm, obj=None):
-        return self.is_admin
+        return self.is_active
 
     def has_module_perms(self, app_label):
         return True
@@ -120,18 +113,22 @@ class MerchantAccount(models.Model):
         return self.full_name
 
     def has_perm(self, perm, obj=None):
-        return self.is_admin
+        return self.is_active
 
     def has_module_perms(self, app_label):
         return True
 
 
-class add_product(models.Model):
-    name = models.CharField(max_length=250)
-    price = models.CharField(max_length=230)
-    image = models.ImageField(upload_to="Products/%Y/%m/%d")
-    user = models.ForeignKey(MerchantAccount, on_delete=models.CASCADE)
-    is_status = models.BooleanField(default=False)
+class Message(models.Model):
+    sender = models.ForeignKey(
+        UserAccount, on_delete=models.CASCADE, related_name='sender')
+    receiver = models.ForeignKey(
+        UserAccount, on_delete=models.CASCADE, related_name='receiver')
+    message = models.CharField(max_length=100)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name
+        return self.message
+
+    class Meta:
+        ordering = ['timestamp']

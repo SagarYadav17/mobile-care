@@ -1,0 +1,97 @@
+<html>
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+
+<head>
+    <title>{{merchant_data.email}}</title>
+</head>
+
+<body>
+    <table style="width: 100%;">
+        <tr>
+            <th>Full Name</th>
+            <td>{{merchant_data.full_name}}</td>
+        </tr>
+
+        <tr>
+            <th>Email</th>
+            <td>{{merchant_data.email}}</td>
+        </tr>
+
+        <tr>
+            <th>Registered Mobile No.</th>
+            <td>{{merchant_data.phone_num}}</td>
+        </tr>
+
+        <tr>
+            <th>Alternative Mobile No.</th>
+            <td>{{merchant_data.phone_num2}}</td>
+        </tr>
+
+        <tr>
+            <th>Adhar Card No.</th>
+            <td>{{merchant_data.aadhar}}</td>
+        </tr>
+
+        <tr>
+            <th>Address</th>
+            <td>{{merchant_data.address}}</td>
+
+        </tr>
+        <tr>
+            <th>city</th>
+            <td>{{merchant_data.city}}</td>
+
+        </tr>
+        <tr>
+            <th>State</th>
+            <td>{{merchant_data.state}}</td>
+
+        </tr>
+        <tr>
+            <th>Pin Code</th>
+            <td>{{merchant_data.pincode}}</td>
+
+        </tr>
+        <tr>
+            <th>Shop Estd Date</th>
+            <td>{{merchant_data.shop_established_date}}</td>
+
+        </tr>
+        <tr>
+            <th>Shop Name</th>
+            <td>{{merchant_data.shop_name}}</td>
+
+        </tr>
+        <tr>
+            <th>Shop (GST No.)</th>
+            <td>{{merchant_data.gst_num}}</td>
+
+        </tr>
+        <tr>
+            <th>Wholeseller/Retailer</th>
+            <td>{{merchant_data.shop_type}}</td>
+
+        </tr>
+        <tr>
+            <th>Available services</th>
+            <td>{{merchant_data.available_services}}</td>
+
+        </tr>
+
+    </table>
+</body>
+
+</html>
