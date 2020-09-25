@@ -141,7 +141,7 @@ def merchant_form(request):
             shop_type=shop_type,
             gst_num=gst,
             available_services=services,
-            about_shop=about,
+            about_shop=about
         )
 
         update_status = UserAccount.objects.get(email=email)
@@ -176,7 +176,7 @@ def admin_dashboard(request):
 @login_required(login_url='login-user')
 def admin_chat_list(request):
     context = {
-        'merchant': UserAccount.objects.filter(is_superuser=False and is_staff)
+        'merchant': UserAccount.objects.filter(is_staff=True)
     }
     return render(request, 'dashboard/admin/chat_table.html', context)
 
@@ -205,8 +205,7 @@ def admin_chat(request, merchant_email):
 def admin_text_all(request):
     if request.method == "POST":
         message = request.POST['message']
-        merchant_list = UserAccount.objects.filter(
-            is_superuser=False and is_staff)
+        merchant_list = UserAccount.objects.filter(is_staff=True)
         for merchant in merchant_list:
             Message.objects.create(sender=request.user,
                                    receiver=merchant, message=message)
