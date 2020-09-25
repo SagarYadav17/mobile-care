@@ -1,4 +1,5 @@
 from django.db import models
+from phone_field import PhoneField
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.base_user import BaseUserManager
@@ -91,8 +92,8 @@ class MerchantAccount(models.Model):
     full_name = models.CharField(max_length=50)
     shop_name = models.CharField(max_length=50, blank=True)
     email = models.OneToOneField(UserAccount, on_delete=models.PROTECT)
-    phone_num = models.BigIntegerField(unique=True)
-    phone_num2 = models.BigIntegerField()
+    phone_num = PhoneField(blank=True, help_text='Contact phone number')
+    phone_num2 = PhoneField(blank=True, help_text='Contact phone number')
     aadhar = models.CharField(unique=True, max_length=16, blank=True)
     address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=20, blank=True)
