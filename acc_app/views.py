@@ -123,7 +123,6 @@ def merchant_form(request):
         shop_type = request.POST['shop-type']
         gst = request.POST['gst']
         services = request.POST['services']
-        price = request.POST['price']
 
         MerchantAccount.objects.create(
             email=UserAccount.objects.get(email=email),
@@ -141,7 +140,6 @@ def merchant_form(request):
             shop_type=shop_type,
             gst_num=gst,
             available_services=services,
-            average_price=price
         )
 
         update_status = UserAccount.objects.get(email=email)
