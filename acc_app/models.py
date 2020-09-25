@@ -91,8 +91,8 @@ class MerchantAccount(models.Model):
     full_name = models.CharField(max_length=50)
     shop_name = models.CharField(max_length=50, blank=True)
     email = models.OneToOneField(UserAccount, on_delete=models.PROTECT)
-    phone_num = models.PositiveIntegerField(unique=True)
-    phone_num2 = models.PositiveIntegerField()
+    phone_num = models.BigIntegerField(unique=True)
+    phone_num2 = models.BigIntegerField()
     aadhar = models.CharField(unique=True, max_length=16, blank=True)
     address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=20, blank=True)
@@ -104,7 +104,7 @@ class MerchantAccount(models.Model):
     shop_type = models.CharField(max_length=15, default='Retailer')
     gst_num = models.CharField(max_length=15, blank=True)
     available_services = models.CharField(max_length=200, blank=True)
-    average_price = models.PositiveIntegerField(default=00)
+    average_price = models.BigIntegerField(default=00)
 
     EMAIL_FIELD = 'email'
     objects = AccountManager()
