@@ -97,7 +97,7 @@ class MerchantAccount(models.Model):
     address = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=20, blank=True)
     state = models.CharField(max_length=20, blank=True)
-    pincode = models.PositiveSmallIntegerField(default=00)
+    pincode = models.BigIntegerField(default=00)
     shop_established_date = models.DateField(blank=True, null=True)
     about_shop = models.CharField(max_length=200, blank=True)
     shop_img = models.ImageField(upload_to='ShopsIMG', blank=True)
