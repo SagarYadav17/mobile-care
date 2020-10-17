@@ -1,5 +1,4 @@
 from django.db import models
-from phone_field import PhoneField
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.base_user import BaseUserManager
@@ -34,20 +33,7 @@ class AccountManager(BaseUserManager):
         )
         user.is_staff = True
         user.is_superuser = True
-        user.save(using=self._db)
-        return user
-
-    #   seller / merchant
-    def create_staffuser(self, username, email, password):
-        user = self.create_user(
-            email=self.normalize_email(email),
-            username=username,
-            password=password,
-        )
-
-        user.is_staff = False
-        user.is_superuser = False
-        user.is_active = False
+        
         user.save(using=self._db)
         return user
 
@@ -62,6 +48,21 @@ class AccountManager(BaseUserManager):
         user.is_active = True
         user.is_staff = False
         user.is_superuser = False
+
+        user.save(using=self._db)
+        return user
+
+    def create_merchant(self, username, email, password):
+        user = self.create_user(
+            email=self.normalize_email(email),
+            username=username,
+            password=password,
+        )
+        user.is_merchant = True
+        user.is_active = True
+        user.is_staff - False
+        user.is_superuser = False
+
         user.save(using=self._db)
         return user
 
@@ -73,6 +74,7 @@ class UserAccount(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    is_merchant = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

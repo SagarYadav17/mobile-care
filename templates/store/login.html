@@ -1,0 +1,60 @@
+{% extends 'store/base.html' %}
+{%load static%}
+{%block base%}
+
+
+<div class="register-login-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-3">
+                <div class="login-form">
+                    <h2>Login</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="group-input">
+                            <label for="username">Username or E-mail address</label>
+                            <input type="text" id="username" name="username">
+                        </div>
+                        <div class="group-input">
+                            <label for="pass">Password</label>
+                            <input type="password" id="pass" name="password">
+                        </div>
+                        <div class="group-input gi-check">
+                            <div class="gi-more">
+                                <label for="save-pass">
+                                    Show Password
+                                    <input type="checkbox" id="save-pass" onclick="showPassword()">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <a href="{% url 'password_reset' %}" class="forget-pass">Forget your Password</a>
+                            </div>
+                        </div>
+                        <button type="submit" class="site-btn login-btn">Sign In</button>
+                    </form>
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                    <div class="switch-login">
+                        <a href="{% url 'register' %}" class="or-login">Or Create An Account</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function showPassword() {
+        var x = document.getElementById("pass");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
+
+
+
+{% endblock %}

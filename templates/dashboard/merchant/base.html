@@ -1,6 +1,4 @@
-{% if request.user.is_active and not request.user.is_staff %}
-<h1>You are not a seller <a href="{% url 'home' %}">Go HOME</a></h1>
-{% else %}
+{% if request.user.is_merchant %}
 {% load static %}
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -148,4 +146,6 @@
 </body>
 
 </html>
+{% else %}
+<h1>You are not a seller <a href="{% url 'home' %}">Go HOME</a></h1>
 {% endif %}

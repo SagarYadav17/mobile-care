@@ -26,7 +26,7 @@ SECRET_KEY = 'f8pioz3usn^vo0)axs1hdj8oi7mk6xfbg!0ewc_2)-kdn3%cr('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mobile-care.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['mobile-care.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # apps
     'acc_app',
+    'merchant_dashboard',
+    'admin_dashboard',
+    'rest_framework',
 
     # allauth
     'allauth',

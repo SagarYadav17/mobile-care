@@ -1,14 +1,13 @@
 from django.contrib import admin
 
 from acc_app.models import UserAccount, MerchantAccount, Message
-# Register your models here.
 
 
 class UserAccountAdmin(admin.ModelAdmin):
     list_display = ['username', 'email']
     ordering = ['username']
     search_fields = ['email']
-    list_filter = ['is_active', 'is_staff', 'is_superuser']
+    list_filter = ['is_active', 'is_superuser', 'is_merchant']
 
 
 class MerchantAccountAdmin(admin.ModelAdmin):

@@ -53,7 +53,7 @@
                 <nav class="classy-navbar justify-content-between" id="cleverNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="{% url 'home' %}"><img src="{% static 'index/img/photo2.png' %}" alt=""
+                    <a class="nav-brand" href="{% url 'partner-home' %}"><img src="{% static 'index/img/photo2.png' %}" alt=""
                             style="height: 80px;width: 70px;float: left">
                         <h5 style="margin-top: 10px">MOBILE REPAIRS AT DOORSTEP</h5>
                     </a>
@@ -89,8 +89,8 @@
 
                             <!-- Register / Login -->
                             <div class="register-login-area">
-                                <a href="{% url 'login-user' %}" class="btn active">Log in</a>
-                                <a href="{% url 'register-user' %}" class="btn active">Sign up</a>
+                                <a href="{% url 'partner-login' %}" class="btn active">Log in</a>
+                                <a href="{% url 'register' %}" class="btn active">Sign up</a>
                             </div>
 
                         </div>
@@ -124,7 +124,7 @@
 
                                 <button type="submit" class="btn">Register</button>
                                 <p></p>
-                                <p>Don't have an account?<a href="{% url 'register-user' %}">Sign Up</a></p>
+                                <p>Don't have an account?<a href="{% url 'register' %}">Sign Up</a></p>
                                 <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                             </form>
                         </div>
@@ -215,7 +215,7 @@
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
 
 
-                        <img src="{% static 'index/img/Capture1.PNG' %}" alt=""
+                        <img src="{% static 'index/img/Capture1.png' %}" alt=""
                             style="height:130px;width: 150px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
@@ -230,7 +230,7 @@
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
 
 
-                        <img src="{% static 'index/img/Capture2.PNG' %}" alt=""
+                        <img src="{% static 'index/img/Capture2.png' %}" alt=""
                             style="height:120px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
@@ -246,7 +246,7 @@
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
 
 
-                        <img src="{% static 'index/img/Capture3.PNG' %}" alt=""
+                        <img src="{% static 'index/img/Capture3.png' %}" alt=""
                             style="height:120px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
@@ -262,7 +262,7 @@
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
 
 
-                        <img src="{% static 'index/img/Capture4.PNG' %}" alt=""
+                        <img src="{% static 'index/img/Capture4.png' %}" alt=""
                             style="height:120px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
@@ -278,7 +278,7 @@
                     <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
 
 
-                        <img src="{% static 'index/img/Capture5.PNG' %}" alt=""
+                        <img src="{% static 'index/img/Capture5.png' %}" alt=""
                             style="height:110px;width: 140px;float: left">
                         <!-- Course Content -->
                         <div class="course-content ml-4">
@@ -383,7 +383,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
 
-                    <center><a href="{% url 'register-user' %}" class="btn btn-primary">REGISTER</a>
+                    <center><a href="{% url 'register' %}" class="btn btn-primary">REGISTER</a>
                     </center>
 
                 </div>
@@ -524,7 +524,7 @@
                     <div class="col-12">
                         <!-- Footer Logo -->
                         <div class="footer-logo">
-                            <a href="{% url 'home' %}">
+                            <a href="{% url 'partner-home' %}">
                                 <h2>MOBILE REPAIRS AT DOORSTEP</h2>
                             </a>
                         </div>
