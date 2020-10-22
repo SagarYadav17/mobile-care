@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from merchant_dashboard.models import Product
 from acc_app.models import UserAccount, MerchantAccount
+from store.models import Order, OrderItem
 
 from django.db import IntegrityError
 
@@ -16,9 +17,19 @@ from django.template.loader import render_to_string
 # for error handeling
 from django.contrib import messages
 
+from store import utils
+
+import json
+from django.http import JsonResponse
+
+import random
+
 
 def home(request):
-    return render(request, 'store/index.html')
+    data = utils.cartData(request)
+    order = data['order']
+    context = {'order': order}
+    return render(request, 'store/index.html', context)
 
 
 def userLogin(request):
@@ -34,7 +45,7 @@ def userLogin(request):
             return redirect('home')
 
         elif username_login:
-            login(request)
+            login(request, username_login)
             return redirect('home')
 
         else:
@@ -74,3 +85,71 @@ def register(request):
                 messages.info(request, 'something went wrong')
 
     return render(request, 'store/register.html')
+
+
+def cart(request):
+    data = utils.cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    context = {'items': items, 'order': order, 'cartItems': cartItems}
+
+    return render(request, 'store/cart.html', context)
+
+
+def product_detail(request, product_id):
+    product_detail = Product.objects.get(id=product_id)
+
+    context = {
+        'product': product_detail,
+        'ratings': random.randint(1, 5)
+    }
+
+    return render(request, 'store/product-detail.html', context)
+
+
+def checkout(request):
+    return render(request, 'store/check-out.html')
+
+
+def products_list(request):
+    data = utils.cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    products = Product.objects.all()
+    context = {'products': products}
+
+    return render(request, 'store/products-list.html', context)
+
+
+def updateItem(request):
+    data = json.loads(request.body)
+    productId = data['productId']
+    action = data['action']
+    print('Action:', action)
+    print('Product:', productId)
+
+    customer = request.user
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(
+        customer=customer, complete=False)
+
+    orderItem, created = OrderItem.objects.get_or_create(
+        order=order, product=product)
+
+    if action == 'add':
+        orderItem.quantity = (orderItem.quantity + 1)
+    elif action == 'remove':
+        orderItem.quantity = (orderItem.quantity - 1)
+
+    orderItem.save()
+
+    if orderItem.quantity <= 0:
+        orderItem.delete()
+
+    return JsonResponse('Item was added', safe=False)

@@ -1,5 +1,5 @@
 from django import forms
-from merchant_app.models import Product
+from merchant_dashboard.models import Product
 
 
 class ProductForm(forms.ModelForm):

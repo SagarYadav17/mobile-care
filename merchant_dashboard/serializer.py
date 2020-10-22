@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from merchant_app.models import Product
+from merchant_dashboard.models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:

@@ -5,10 +5,10 @@ from django.contrib.auth.decorators import login_required
 
 from rest_framework import viewsets
 
-from merchant_app.models import Product
-from merchant_app.serializer import ProductSerializer
+from merchant_dashboard.models import Product
+from merchant_dashboard.serializer import ProductSerializer
 
-from merchant_app.forms import ProductForm
+from merchant_dashboard.forms import ProductForm
 
 
 # Create your views here.

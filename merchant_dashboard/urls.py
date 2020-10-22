@@ -1,5 +1,5 @@
 from django.urls import path, include
-from merchant_app import views
+from merchant_dashboard import views
 
 from rest_framework import routers
 
