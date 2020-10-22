@@ -1,0 +1,587 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *Must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>MOBILE CARE</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/' %}">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{% static 'scss/popup_form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/join-us.css' %}">
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+
+        <!-- Top Header Area -->
+        <div class="top-header-area d-flex justify-content-between align-items-center">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <a href="tel:1234567890"><span>Phone:</span> 123 456 7890</a>
+                <a href="mailto:test@gmail.com"><span>Email:</span> careermaniaa@gmail.com</a>
+            </div>
+            <!-- Follow Us -->
+            <div class="follow-us">
+                <span>Follow us</span>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+        <!-- Navbar Area -->
+        <div class="clever-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="cleverNav">
+
+                    <!-- Logo -->
+                    <a class="nav-brand" href="{% url 'partner-home' %}"><img src="{% static 'img/photo2.png' %}" alt=""
+                            style="height: 80px;width: 70px;float: left">
+                        <h5 style="margin-top: 10px">MOBILE REPAIRS AT DOORSTEP</h5>
+                    </a>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- Close Button -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <div class="classynav">
+                            <ul>
+                                <li><a href="#service">Services</a></li>
+                                <li><a href="#work">How It Works</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+
+                            <!-- Search Button -->
+                            <div class="search-area">
+                                <form action="#" method="post">
+                                    <input type="search" name="search" id="search" placeholder="Search">
+                                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                </form>
+                            </div>
+
+                            <!-- Register / Login -->
+                            <div class="register-login-area">
+                                {% if request.user.is_authenticated %}
+                                <a href="{% url 'partner-login' %}" class="btn active">Dashboard</a>
+                                <a href="{% url 'partner-login' %}" class="btn active">Logout</a>
+                                {% else %}
+                                <a href="{% url 'partner-login' %}" class="btn active">Log in</a>
+                                <a href="{% url 'register' %}" class="btn active">Sign up</a>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                        <!-- Nav End -->
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area bg-img bg-overlay-2by5" style="background-image: url({% static 'img/new.jpg' %})">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <!-- Hero Content -->
+                    <div class="hero-content text-center">
+                        <h2>Grow Your Business!</h2>
+                        <button class="open-button" onclick="openForm()">Join Today</button>
+
+
+                        <!-- Modal content -->
+                        <div class="form-popup" id="myForm">
+                            <form method="POST" class="form-container">
+                                {% csrf_token %}
+                                <h1>Register</h1>
+
+                                <label for="email"><b>Email</b></label>
+                                <input type="text" placeholder="Enter Email" name="email" required>
+
+                                <button type="submit" class="btn">Register</button>
+                                <p></p>
+                                <p>Don't have an account?<a href="{% url 'register' %}">Sign Up</a></p>
+                                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Cool Facts Area Start ##### -->
+    <section class="cool-facts-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="250ms">
+                        <div class="icon">
+                            <img src="{% static 'img/smart.png' %}" alt="">
+                        </div>
+                        <h2 style="font-size: 25px;color: black"><span>Smartphones</span></h2>
+                        <h6>
+                            <p>We restore smartphones of all generations like the ones powered by Symbian.</p>
+                        </h6>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="icon">
+                            <img src="{% static 'img/tablet.png' %}" alt="">
+                        </div>
+                        <h2 style="font-size: 25px ;color: black"><span>Tablets</span></h2>
+                        <h6>
+                            <p>Renovate your tablet device. We can handle even a 100% damaged screen.</p>
+                        </h6>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="750ms">
+                        <div class="icon">
+                            <img src="{% static 'img/android.png' %}" alt="">
+                        </div>
+                        <h2 style="font-size: 25px;color: black"><span>Android</span></h2>
+                        <h6>
+                            <p>Our team knows everything on Android devices repairment.</p>
+                        </h6>
+                    </div>
+                </div>
+
+                <!-- Single Cool Facts Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-cool-facts-area text-center mb-100 wow fadeInUp" data-wow-delay="1000ms">
+                        <div class="icon">
+                            <img src="{% static 'img/apple.png' %}" alt="">
+                        </div>
+                        <h2 style="font-size: 25px;color: black"><span>Apple</span></h2>
+                        <h6>
+                            <p>Bring your damaged iPhone, iPad, iPod or any other Apple product!</p>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Cool Facts Area End ##### -->
+
+    <!-- ##### Popular Courses Start ##### -->
+    <section class="popular-courses-area section-padding-100-0"
+        style="background-image: url({% static 'img/core-img/texture.png' %})" id="service">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>SERVICES THAT YOU CAN PROVIDE</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Popular Course -->
+
+                <!-- Single Popular Course -->
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
+
+
+                        <img src="{% static 'img/Capture1.png' %}" alt="" style="height:130px;width: 150px;float: left">
+                        <!-- Course Content -->
+                        <div class="course-content ml-4">
+                            <h5>Quick Service</h5>
+
+                            <p>We understand your time is precious.Our expert will fix your device within 30 minutes!
+                            </p>
+                            <!-- Seat Rating Fee -->
+                        </div>
+
+                    </div><br>
+                    <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
+
+
+                        <img src="{% static 'img/Capture2.png' %}" alt="" style="height:120px;width: 140px;float: left">
+                        <!-- Course Content -->
+                        <div class="course-content ml-4">
+                            <h5>Free Doorstep Service</h5>
+
+                            <p>Get premium mobile screen repair service at your doorstep with no additional cost.</p>
+                            <!-- Seat Rating Fee -->
+                        </div>
+
+                    </div><br>
+
+
+                    <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
+
+
+                        <img src="{% static 'img/Capture3.png' %}" alt="" style="height:120px;width: 140px;float: left">
+                        <!-- Course Content -->
+                        <div class="course-content ml-4">
+                            <h5>Transparency</h5>
+
+                            <p>We provides complete, authoritative and timely declaration of information to its
+                                customers</p>
+                            <!-- Seat Rating Fee -->
+                        </div>
+
+                    </div><br>
+
+                    <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
+
+
+                        <img src="{% static 'img/Capture4.png' %}" alt="" style="height:120px;width: 140px;float: left">
+                        <!-- Course Content -->
+                        <div class="course-content ml-4">
+                            <h5>Certified Professionals</h5>
+
+                            <p>Our technicians are professionally experienced. Rest assured, your device is in safe
+                                hands</p>
+                            <!-- Seat Rating Fee -->
+                        </div>
+
+                    </div><br>
+
+                    <div class="single-popular-course mb-40 wow fadeInUp" data-wow-delay="500ms">
+
+
+                        <img src="{% static 'img/Capture5.png' %}" alt="" style="height:110px;width: 140px;float: left">
+                        <!-- Course Content -->
+                        <div class="course-content ml-4">
+                            <h5>6-Month Warranty</h5>
+
+                            <p>We offer 6-month warranty. Our team will share all the warranty related information with
+                                you.</p>
+                            <!-- Seat Rating Fee -->
+                        </div>
+
+                    </div><br>
+
+
+                </div>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="single-popular-course text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="icon">
+                            <img src="{% static 'img/young.jpg' %}" alt="" style="height: 755px">
+                        </div> <!-- Course Content -->
+
+                        <!-- Seat Rating Fee -->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Single Popular Course -->
+
+
+        </div>
+    </section>
+    <!-- ##### Popular Courses End ##### -->
+
+
+
+    <!-- ##### Register Now Start ##### -->
+    <section class="register-now section-padding-100-0 d-flex justify-content-between align-items-center"
+        style="background-image: url({% static 'img/core-img/texture.png' %});" id="work">
+        <!-- Register Contact Form -->
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>HOW IT WORKS?</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Single Popular Course -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-popular-course text-center mb-100 wow fadeInUp" data-wow-delay="500ms">
+                        <div class="icon">
+                            <img src="{% static 'img/desktop.svg' %}" alt="" style="height:150px;width: 150px;display: block;
+        margin: 0 auto 10px;">
+                        </div> <!-- Course Content -->
+                        <div class="course-content">
+                            <h5>Develop your business</h5>
+
+                            <p>Sign up for free, and offer your services to the Customers.</p>
+                        </div>
+                        <!-- Seat Rating Fee -->
+
+                    </div>
+                </div>
+
+                <!-- Single Popular Course -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="500ms">
+                        <img src="{% static 'img/get-request.svg' %}" alt="" style="height:150px;width: 150px;display: block;
+        margin: 0 auto 10px;">
+                        <!-- Course Content -->
+                        <div class="course-content">
+                            <h5>Get requests from Customers</h5>
+
+                            <p>Get notified and discuss service details with the Customers.</p>
+                        </div>
+                        <!-- Seat Rating Fee -->
+
+                    </div>
+                </div>
+
+                <!-- Single Popular Course -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-popular-course mb-100 wow fadeInUp" data-wow-delay="750ms">
+                        <img src="{% static 'img/income.svg' %}" alt="" style="height:150px;width: 150px;display: block;
+        margin: 0 auto 10px;">
+                        <!-- Course Content -->
+                        <div class="course-content">
+                            <h5>Get paid for your work</h5>
+
+                            <p>Deliver services to the customers and get paid for it.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <!-- Single Popular Course -->
+                <div class="col-12 col-md-6 col-lg-4">
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+
+                    <center><a href="{% url 'register' %}" class="btn btn-primary">REGISTER</a>
+                    </center>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Register Now Countdown -->
+    </section>
+    <!-- ##### Best Tutors Start ##### -->
+    <section class="best-tutors-area section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading">
+                        <h3>OUR SERVICE PARTNERS</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="tutors-slide owl-carousel wow fadeInUp" data-wow-delay="250ms">
+
+                        <!-- Single Tutors Slide -->
+                        <div class="single-tutors-slides">
+                            <!-- Tutor Thumbnail -->
+                            <div class="tutor-thumbnail">
+                                <img src="{% static 'img/bg-img/t1.png' %}" alt="">
+                            </div>
+                            <!-- Tutor Information -->
+                            <div class="tutor-information text-center">
+                                <h5>Alex Parker</h5>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
+                                <div class="social-info">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Tutors Slide -->
+                        <div class="single-tutors-slides">
+                            <!-- Tutor Thumbnail -->
+                            <div class="tutor-thumbnail">
+                                <img src="{% static 'img/bg-img/t2.png' %}" alt="">
+                            </div>
+                            <!-- Tutor Information -->
+                            <div class="tutor-information text-center">
+                                <h5>Alex Parker</h5>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
+                                <div class="social-info">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Tutors Slide -->
+                        <div class="single-tutors-slides">
+                            <!-- Tutor Thumbnail -->
+                            <div class="tutor-thumbnail">
+                                <img src="{% static 'img/bg-img/t3.png' %}" alt="">
+                            </div>
+                            <!-- Tutor Information -->
+                            <div class="tutor-information text-center">
+                                <h5>Alex Parker</h5>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
+                                <div class="social-info">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Tutors Slide -->
+                        <div class="single-tutors-slides">
+                            <!-- Tutor Thumbnail -->
+                            <div class="tutor-thumbnail">
+                                <img src="{% static 'img/bg-img/t4.png' %}" alt="">
+                            </div>
+                            <!-- Tutor Information -->
+                            <div class="tutor-information text-center">
+                                <h5>Alex Parker</h5>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
+                                <div class="social-info">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Single Tutors Slide -->
+                        <div class="single-tutors-slides">
+                            <!-- Tutor Thumbnail -->
+                            <div class="tutor-thumbnail">
+                                <img src="{% static 'img/bg-img/t5.png' %}" alt="">
+                            </div>
+                            <!-- Tutor Information -->
+                            <div class="tutor-information text-center">
+                                <h5>Alex Parker</h5>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum laoreet
+                                    elit, sit amet tincidunt mauris ultrices vitae.</p>
+                                <div class="social-info">
+                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Best Tutors End ##### -->
+    <br><br>
+    <!-- ##### Register Now End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer-area">
+        <!-- Top Footer Area -->
+        <div class="top-footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Footer Logo -->
+                        <div class="footer-logo">
+                            <a href="{% url 'partner-home' %}">
+                                <h2>MOBILE REPAIRS AT DOORSTEP</h2>
+                            </a>
+                        </div>
+                        <!-- Copywrite -->
+                        <p><a href="">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | <i
+                                    class="fa fa-heart-o" aria-hidden="true"></i><a href="https://colorlib.com"
+                                    target="_blank"></a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer Area -->
+        <div class="bottom-footer-area d-flex justify-content-between align-items-center">
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <a href="tel:123456789"><span>Phone:</span> +44 123456789</a>
+                <a href="mailto:test@gmail.com"><span>Email:</span> test@gmail.com</a>
+            </div>
+            <!-- Follow Us -->
+            <div class="follow-us">
+                <span>Follow us</span>
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <!-- ##### All Javascript Script ##### -->
+    <!-- jQuery-2.2.4 js -->
+    <script src="{% static 'jquery/jquery-2.2.4.min.js' %}"></script>
+    <!-- Popper js -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- All Plugins js -->
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <!-- Active js -->
+    <script src="{% static 'js/active.js' %}"></script>
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+</body>
+
+
+
+</html>

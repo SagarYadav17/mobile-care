@@ -72,7 +72,7 @@ def partner_home(request):
             email.send()
             return redirect('home')
 
-    return render(request, 'index.html')
+    return render(request, 'acc_app/join-us.html')
 
 
 def merchant_form(request):

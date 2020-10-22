@@ -19,65 +19,71 @@
                         ADD PRODUCT DETAILS
                     </div>
                     <div class="panel-body">
-                        <form role="form">
-
+                        <form role="form" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
                                     <div class="form-group">
-                                        <label>Product Name</label>
-                                        <input class="form-control" type="text">
+                                        <label>Brand</label>
+                                        <input class="form-control" type="text" name="{{form.brand.name}}" required>
+
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input class="form-control" type="text" name="{{form.name.name}}" required>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Upload Image</label>
-                                        <input class="form-control" type="file">
+                                        <input class="form-control" type="file" name="{{form.image.name}}" required>
                                     </div>
-
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-
                                     <div class="form-group">
                                         <label>Price</label>
-                                        <input class="form-control" type="text">
+                                        <input class="form-control" type="number" maxlength="6"
+                                            name="{{form.price.name}}" required>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-
-                                    <div class="form-group">
-                                        <label>Discount</label>
-                                        <input class="form-control" type="text">
-                                    </div>
-
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
                                     <div class="form-group">
-                                        <label>Warranty</label>
-                                        <input class="form-control" type="text">
+                                        <label>Warrenty</label>
+                                        <input class="form-control" type="text" name="{{form.warrenty.name}}"
+                                            value="30 Days" required>
                                     </div>
                                 </div>
-
                                 <div class="col-md-6 col-sm-6 col-xs-12">
 
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3"></textarea>
+                                        <input class="form-control" type="text" name="{{form.description.name}}"
+                                            required>
                                     </div>
+
+                                    <input type="number" name="{{form.seller.name}}" value="{{request.user.id}}" hidden
+                                        required>
+
                                 </div>
                             </div>
+
 
                             <button type="submit" class="btn btn-info" style="margin-left: 450px;">SAVE
                             </button>
 
-
                         </form>
+
                     </div>
                 </div>
             </div>

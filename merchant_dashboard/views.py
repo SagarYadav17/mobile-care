@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from acc_app.models import UserAccount, MerchantAccount
 
 from django.contrib.auth.decorators import login_required
 
 from rest_framework import viewsets
 
-from merchant_dashboard.models import Product
-from merchant_dashboard.serializer import ProductSerializer
+from merchant_app.models import Product
+from merchant_app.serializer import ProductSerializer
+
+from merchant_app.forms import ProductForm
 
 
 # Create your views here.
@@ -73,5 +75,13 @@ def merchant_messages(request):
 
 @login_required(login_url='partner-login')
 def merchant_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('merchant-product')
 
-    return render(request, 'dashboard/merchant/product.html')
+        else:
+            print('Adding product failed from {}'.format(request.user.id))
+
+    return render(request, 'dashboard/merchant/product.html', {'form': ProductForm})

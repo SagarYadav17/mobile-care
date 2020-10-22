@@ -1,88 +1,32 @@
-﻿{% if request.user.is_superuser %}
+﻿{% extends 'dashboard/admin/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+{% block base %}
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
-    <!-- BOOTSTRAP STYLES-->
-    <link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet" />
-    <!-- FONTAWESOME STYLES-->
-    <link href="{% static 'admin/css/font-awesome.css' %}" rel="stylesheet" />
-    <!-- CUSTOM STYLES-->
-    <link href="{% static 'admin/css/custom.css' %}" rel="stylesheet" />
-    <!-- GOOGLE FONTS-->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-</head>
 
-<body>
-
-    <div id="wrapper">
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="adjust-nav">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{% url 'admin-dashboard' %}">
-                        <img style="height:50px;width:60px;" href="{% static 'admin/img/logo.png' %}" />
-                    </a>
-                </div>
-
-                <span class="logout-spn">
-                    <a href="#" style="color:#fff;">LOGOUT</a>
-
-                </span>
-            </div>
+<!-- /. NAV SIDE  -->
+<div id="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>NOTIFICATION TO MERCHANTS </h2>
         </div>
-
-        <!-- /. NAV SIDE  -->
-        <div id="page-inner">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>NOTIFICATION TO MERCHANTS </h2>
-                </div>
-            </div>
-            <!-- /. ROW  -->
-            <hr />
-
-            <!-- /. ROW  -->
-
-            <!-- /. PAGE INNER  -->
-
-            <div class="container" style="border:2px solid black;height:500px;width:700px;">
-                <center>
-                    <h3>Notification</h3>
-                </center>
-                <form method="POST">
-                    {% csrf_token %}
-                    <textarea name="message" id="note" rows="10" cols="80"></textarea>
-                    <center> <input type="submit" class="btn btn-primary" value="Send to All"></center>
-                </form>
-            </div>
-        </div>
-        <!-- /. PAGE WRAPPER  -->
     </div>
+    <!-- /. ROW  -->
+    <hr />
 
-    <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
-    <script href="{% static 'admin/js/jquery-1.10.2.js' %}"></script>
-    <!-- BOOTSTRAP SCRIPTS -->
-    <script href="{% static 'admin/js/bootstrap.min.js' %}"></script>
-    <!-- CUSTOM SCRIPTS -->
-    <script href="{% static 'admin/js/custom.js' %}"></script>
+    <!-- /. ROW  -->
 
+    <!-- /. PAGE INNER  -->
 
-</body>
+    <div class="container" style="border:2px solid black;height:500px;width:700px;">
+        <center>
+            <h3>Notification</h3>
+        </center>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="message" id="note" rows="10" cols="80"></textarea>
+            <center> <input type="submit" class="btn btn-primary" value="Send to All"></center>
+        </form>
+    </div>
+</div>
 
-</html>
-{% else %}
-
-<p>Not a admin! <a href="{% url 'partner-login' %}">Login</a></p>
-
-{% endif %}
+{% endblock %}

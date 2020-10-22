@@ -1,108 +1,51 @@
-{% if request.user.is_superuser %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'dashboard/admin/base.html' %}
+{%load static%}
+{%block base%}
 
-<head>
-  <meta charset="utf-8">
+<!-- /. NAV TOP  -->
+<div id="page-inner">
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>MERCHANT DETAILS</h2>
+    </div>
+  </div>
+  <!-- /. ROW  -->
+  <hr />
 
-  <meta name="description" content="Bootstrap.">
-  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
-  <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-  <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="table-responsive" style="overflow-x: auto">
+        <table id="myTable" class="table table-striped">
+          <thead>
 
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Export as PDF</th>
+              <th>Approve</th>
+            </tr>
+          </thead>
+          {% for i in sel %}
+          <tbody>
+            <tr>
+              <td>{{i.username}}</td>
+              <td>{{i}}</td>
+              <form method="post">
+                {%csrf_token%}
+                <td><input type="submit" name="pdf" value="Export"></td>
+                <td>
+                  <input type="hidden" value="{{i.id}}" name="id">
+                  <input type="submit" value="APPROVE" name="approve">
+                </td>
+              </form>
+            </tr>
+            {%endfor%}
+          </tbody>
 
+        </table>
 
-  <!-- BOOTSTRAP STYLES-->
-  <link href="{% static 'admin/css/bootstrap.css' %}" rel="stylesheet" />
-  <!-- FONTAWESOME STYLES-->
-  <link href="{% static 'admin/css/font-awesome.css' %}" rel="stylesheet" />
-  <!-- CUSTOM STYLES-->
-  <link href="{% static 'admin/css/custom.css' %}" rel="stylesheet" />
-  <!-- GOOGLE FONTS-->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
-</head>
-
-<body>
-
-  <div id="wrapper">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="adjust-nav">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="{% url 'admin-dashboard' %}#">
-            <img style="height:50px;width:60px;" src="{% static 'admin/img/logo.png' %}" />
-
-          </a>
-
-        </div>
-
-        <span class="logout-spn">
-          <a href="{% url 'logout-user' %}#" style="color:#fff;">LOGOUT</a>
-
-        </span>
       </div>
     </div>
-    <!-- /. NAV TOP  -->
-    <div id="page-inner">
-      <div class="row">
-        <div class="col-lg-12">
-          <h2>MERCHANT DETAILS</h2>
-        </div>
-      </div>
-      <!-- /. ROW  -->
-      <hr />
+  </div>
 
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="table-responsive" style="overflow-x: auto">
-            <table id="myTable" class="table table-striped">
-              <thead>
-
-                <tr>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Export as PDF</th>
-                  <th>Approve</th>
-                </tr>
-              </thead>
-              {% for i in sel %}
-              <tbody>
-                <tr>
-                  <td>{{i.username}}</td>
-                  <td>{{i}}</td>
-                  <form method="post">
-                    {%csrf_token%}
-                    <td><input type="submit" name="pdf" value="Export"></td>
-                    <td>
-                      <input type="hidden" value="{{i.id}}" name="id">
-                      <input type="submit" value="APPROVE" name="approve">
-                    </td>
-                  </form>
-                </tr>
-                {%endfor%}
-              </tbody>
-
-            </table>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-</body>
-
-
-</html>
-{% else %}
-
-<p>Not a admin! <a href="{% url 'partner-login' %}">Login</a></p>
-
-{% endif %}
+  {% endblock %}

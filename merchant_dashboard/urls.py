@@ -1,5 +1,5 @@
 from django.urls import path, include
-from merchant_dashboard import views
+from merchant_app import views
 
 from rest_framework import routers
 
@@ -24,6 +24,6 @@ urlpatterns = [
          views.merchant_invoice, name='merchant-invoice'),
     path('merchant-dashboard/messages/',
          views.merchant_messages, name='merchant-message'),
-    path('merchant-dashboard/products/',
+    path('merchant-dashboard/add-product/',
          views.merchant_product, name='merchant-product'),
 ]

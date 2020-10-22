@@ -27,7 +27,7 @@ def admin_dashboard(request):
 @login_required(login_url='partner-login')
 def admin_chat_list(request):
     context = {
-        'merchant': UserAccount.objects.filter(is_staff)
+        'merchant': UserAccount.objects.filter(is_merchant=True)
     }
     return render(request, 'dashboard/admin/chat_table.html', context)
 

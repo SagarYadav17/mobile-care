@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'acc_app',
     'merchant_dashboard',
     'admin_dashboard',
+    'store',
+
     'rest_framework',
 
     # allauth
@@ -155,7 +157,7 @@ STATIC_ROOT = (BASE_DIR / 'staticfiles')
 
 SITE_ID = 2
 
-LOGIN_URL = 'login-user'
+LOGIN_URL = 'partner-login'
 LOGOUT_URL = 'logout-user'
 LOGIN_REDIRECT_URL = 'home'
 

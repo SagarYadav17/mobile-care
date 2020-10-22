@@ -33,7 +33,7 @@ class AccountManager(BaseUserManager):
         )
         user.is_staff = True
         user.is_superuser = True
-        
+
         user.save(using=self._db)
         return user
 
@@ -120,6 +120,20 @@ class MerchantAccount(models.Model):
 
     def has_module_perms(self, app_label):
         return True
+
+
+class ShippingAddress(models.Model):
+    customer = models.OneToOneField(
+        UserAccount, null=True, blank=True, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=100, null=True)
+    phone_num = models.PositiveIntegerField()
+    address = models.CharField(max_length=200, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    state = models.CharField(max_length=50, null=True, blank=True)
+    pincode = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.customer
 
 
 class Message(models.Model):

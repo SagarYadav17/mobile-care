@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from acc_app.models import UserAccount, MerchantAccount, Message
+from acc_app.models import UserAccount, MerchantAccount, ShippingAddress
 
 
 class UserAccountAdmin(admin.ModelAdmin):
@@ -15,11 +15,5 @@ class MerchantAccountAdmin(admin.ModelAdmin):
     ordering = ['full_name']
 
 
-class MessageAdmin(admin.ModelAdmin):
-    list_display = ['message', 'sender', 'receiver']
-    ordering = ['timestamp']
-
-
 admin.site.register(UserAccount, UserAccountAdmin)
 admin.site.register(MerchantAccount, MerchantAccountAdmin)
-admin.site.register(Message, MessageAdmin)

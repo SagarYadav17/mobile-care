@@ -1,0 +1,71 @@
+{% extends 'store/base.html' %}
+{%load static%}
+{%block base%}
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="cart-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="p-name">Product Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr>
+                                <td class="cart-title first-row">
+                                    <h5>{{item.product.name}}</h5>
+                                </td>
+                                <td class="p-price first-row">₹{{item.product.price}}</td>
+                                <td class="qua-col first-row">{{item.quantity}}</td>
+
+                                <td class="total-price first-row">₹{{item.get_total}}</td>
+                                <td class="qua-col first-row"> <img data-product="{{item.product.id}}" data-action="add"
+                                        class="chg-quantity update-cart" src="{% static  'img/arrow-up.png' %}"
+                                        style="width: 25%; height: 5%;">
+                                    <img data-product="{{item.product.id}}" data-action="remove"
+                                        class="chg-quantity update-cart" src="{% static  'img/arrow-down.png' %}"
+                                        style="width: 25%; height: 5%;">
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="cart-buttons">
+                            <a href="{% url 'explore' %}" class="primary-btn continue-shop">Continue shopping</a>
+                            <a href="#" class="primary-btn up-cart">Update cart</a>
+                        </div>
+                        <div class="discount-coupon">
+                            <h6>Discount Codes</h6>
+                            <form action="#" class="coupon-form">
+                                <input type="text" placeholder="Enter your codes">
+                                <button type="submit" class="site-btn coupon-btn">Apply</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 offset-lg-4">
+                        <div class="proceed-checkout">
+                            <ul>
+                                <li class="cart-total">Total <span>₹{{order.get_cart_total}}</span></li>
+                            </ul>
+                            <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+{% endblock %}

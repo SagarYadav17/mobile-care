@@ -1,0 +1,175 @@
+{% extends 'store/base.html' %}
+{%load static%}
+{%block base%}
+<!-- Product Shop Section Begin -->
+<section class="product-shop spad page-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="filter-widget">
+                    <h4 class="fw-title">Categories</h4>
+                    <ul class="filter-catagories">
+                        <li><a href="#">Mobile Phones</a></li>
+                        <li><a href="#">Mobile Accesories </a></li>
+
+                    </ul>
+                </div>
+                <div class="filter-widget">
+                    <h4 class="fw-title">Brand</h4>
+                    <div class="fw-brand-check">
+                        <div class="bc-item">
+                            <label for="bc-calvin">
+                                Oppo
+                                <input type="checkbox" id="bc-calvin">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-diesel">
+                                Vivo
+                                <input type="checkbox" id="bc-diesel">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-polo">
+                                Xiaomi
+                                <input type="checkbox" id="bc-polo">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-tommy">
+                                Samsung
+                                <input type="checkbox" id="bc-tommy">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-tommy">
+                                Nokia
+                                <input type="checkbox" id="bc-tommy">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="bc-item">
+                            <label for="bc-tommy">
+                                Motorola
+                                <input type="checkbox" id="bc-tommy">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-widget">
+                    <h4 class="fw-title">Price</h4>
+                    <div class="filter-range-wrap">
+                        <div class="range-slider">
+                            <div class="price-input">
+                                <input type="text" id="minamount">
+                                <input type="text" id="maxamount">
+                            </div>
+                        </div>
+                        <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+                            data-min="33" data-max="98">
+                            <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                            <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                        </div>
+                    </div>
+                    <a href="#" class="filter-btn">Filter</a>
+                </div>
+
+
+            </div>
+
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="product-pic-zoom">
+                            <img class="product-big-img" src="{{product.image.url}}" alt="Image not found">
+                            <div class="zoom-icon">
+                                <i class="fa fa-search-plus"></i>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="product-details">
+                            <div class="pd-title">
+                                <span>{{product.brand}}</span>
+                                <h3>{{product.name}}</h3>
+                            </div>
+                            <div class="pd-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span>({{ratings}})</span>
+                            </div>
+                            <div class="pd-desc">
+
+                                <h4>₹{{product.price}}</h4>
+                            </div>
+                            <div class="quantity">
+                                {% if product.available %}
+                                <a data-product="{{product.id}}" data-action="add"
+                                    class="add-btn update-cart primary-btn pd-cart">Add to cart</a>
+                                {% else %}
+                                <a class="primary-btn pd-cart">Out of Stock</a>
+                                {% endif %}
+                            </div>
+                            <ul class="pd-tags">
+                                <li><span>CATEGORIES</span>: Mobile Phones</li>
+                                <li><span>TAGS</span>: Mobile Phone</li>
+                            </ul>
+                            <div class="pd-share">
+                                <div class="p-code">Product ID : {{product.id}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-tab">
+                    <div class="tab-item">
+                        <ul class="nav" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#tab-1" role="tab">DESCRIPTION</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab-2" role="tab">SPECIFICATIONS</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-item-content">
+                        <div class="tab-content">
+                            <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
+                                <div class="product-content">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <h5>Introduction</h5>
+                                            <p>{{product.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade-in" id="tab-2" role="tabpanel">
+                                <div class="product-content">
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <h5>SPECIFICATIONS</h5>
+                                            <p>{{product.description}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
