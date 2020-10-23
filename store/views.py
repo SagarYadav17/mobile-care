@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 from merchant_dashboard.models import Product
-from acc_app.models import UserAccount, MerchantAccount
+from acc_app.models import UserAccount, MerchantAccount, ShippingAddress
 from store.models import Order, OrderItem
 
 from django.db import IntegrityError
@@ -18,6 +18,7 @@ from django.template.loader import render_to_string
 from django.contrib import messages
 
 from store import utils
+from store.forms import AddressForm
 
 import json
 from django.http import JsonResponse
@@ -153,3 +154,22 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+
+def account(request):
+    content = {}
+    try:
+        content['account_data'] = ShippingAddress.objects.get(
+            customer=request.user.id)
+    except:
+        content['account_data'] = None
+
+    content['form'] = AddressForm
+
+    if request.method == 'POST':
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+
+    return render(request, 'store/account.html', content)
