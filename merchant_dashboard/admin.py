@@ -3,7 +3,7 @@ from merchant_dashboard.models import Product
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'seller', 'price']
+    list_display = ['name', 'seller', 'price', 'available']
     list_filter = ['available']
     ordering = ['name']
 

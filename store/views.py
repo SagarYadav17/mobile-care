@@ -122,7 +122,7 @@ def products_list(request):
     order = data['order']
     items = data['items']
 
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('-available')
     context = {'products': products}
 
     return render(request, 'store/products-list.html', context)
@@ -173,3 +173,13 @@ def account(request):
             return redirect('account')
 
     return render(request, 'store/account.html', content)
+
+
+def search_result(request):
+    content = {}
+    if request.method == 'GET':
+        search_item = request.GET.get('search')
+        content['products'] = Product.objects.filter(
+            name__icontains=search_item)
+
+    return render(request, 'store/products-list.html', content)
